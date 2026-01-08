@@ -16,7 +16,7 @@ if (process.argv.length === 5) {
     emitter.on("result", (result) => {
         console.log(result);
     });
-    
+
     emitter.emit(method, +firstNumber, +secondNumber);
 } else {
     console.log("Неверный формат REPL");

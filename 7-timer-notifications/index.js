@@ -13,7 +13,8 @@ if (process.argv.length <= 2) {
 
         notifier.notify({
             title: "Подъём!!!",
-            message: "Поднимайся моя красавица!!!"
+            message: "Поднимайся моя красавица!!!",
+            icon: path.join(`${ __dirname }/icons`, "AddressButton.svg")
         });
     }, getTimeInMilliseconds(time));
 }

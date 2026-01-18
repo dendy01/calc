@@ -16,13 +16,14 @@ const printError = (text) => {
 const printHelp = () => {
     console.log(dedent(`
         ${ chalk.bgBlue("HELP") }
-        -s [CITY] для установки города
+        -s [CITY] для установки города, либо -s [CITY] [CITY] [CITY] для установки городов
         -h для вывода помощи
         -t [API_KEY] для сохранения токена
+        -l [LANG] для установки языка (ru или en)
     `));
 };
 
-const printWeather = (weather) => {
+const printWeather = (weather, city) => {
     const now = new Date();
     const options = { 
         weekday: 'long', 
@@ -35,10 +36,11 @@ const printWeather = (weather) => {
     };
 
     console.log(dedent(`
+            Город: ${ chalk.bgBlue(city) }
         📅 ${ chalk.bgCyan(now.toLocaleDateString('ru-RU', options)) }
         🌡️  Температура за окном: ${ weather.temp } °C
         💧 Влажность: ${ weather.humidity } %
-        💨 Скорость ветка: ${ weather.windSpeed } м/с
+        💨 Скорость ветра: ${ weather.windSpeed } м/с
         🌀 Порывы ветра: ${ weather.windGust } м/с
     `));
 };

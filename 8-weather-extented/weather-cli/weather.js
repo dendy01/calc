@@ -7,10 +7,11 @@ import { getValueByKey, KEYS, saveValueByKey } from "./services/storage.service.
 import { handlingError } from "./utils/handlingError.js";
 import { getCurrentWeather } from "./utils/weather.js";
 
-const getForcast = async () => {
-    const apiKey = await getValueByKey(KEYS.apiKey);
-    const city = await getValueByKey(KEYS.city);
+const apiKey = await getValueByKey(KEYS.apiKey);
+const city = await getValueByKey(KEYS.city);
+const lang = await getValueByKey(KEYS.lang);
 
+const getForcast = async (city) => {
     if (!apiKey) {
         printError("Отсутствует токен, пожалуйста, авторизуйтесь командой -t [API_KEY]");
 
@@ -24,7 +25,7 @@ const getForcast = async () => {
     }
 
     try {
-        const weather = await getWeather(apiKey, city);
+        const weather = await getWeather(apiKey, city, lang || '');
 
         if (Number(weather.cod) !== 200) {
             throw weather;
@@ -46,7 +47,7 @@ const getForcast = async () => {
 
         const currentWeather = getCurrentWeather(weatherList);
 
-        printWeather(currentWeather);
+        printWeather(currentWeather, city);
     } catch(error) {
         handlingError(error);
     }
@@ -63,14 +64,10 @@ const main = async () => {
         } catch (error) {
             printError(error);
         }
-
-        return;
     }
 
     if (args.h) {
         printHelp();
-
-        return;
     }
 
     if (args.t) {
@@ -81,11 +78,29 @@ const main = async () => {
         } catch (error) {
             printError(error);
         }
-
-        return;
     }
 
-    getForcast();
+    if (args.l) {
+        console.log(args.l);
+
+        try {
+            await saveValueByKey(KEYS.lang, args.l);
+
+            printSuccess("Язык успешно сохранён");
+        } catch (error) {
+            printError(error);
+        }
+    }
+
+    if (args.print) {
+        if (city.length) {
+            city.forEach((item) => {
+                getForcast(item);
+            })
+        } else {
+            getForcast(city);
+        }
+    }
 };
 
 main();

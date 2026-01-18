@@ -4,7 +4,8 @@ import path from "path";
 const root = path.join(path.resolve(), "weather-data.json");
 const KEYS = {
     apiKey: "apiKey",
-    city: "city"
+    city: "city",
+    lang: "lang"
 };
 
 const saveValueByKey = async (key, value) => {

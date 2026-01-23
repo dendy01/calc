@@ -1,0 +1,21 @@
+{
+  "name": "9-weather-api",
+  "version": "1.0.0",
+  "description": "API weather",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "API",
+    "weather"
+  ],
+  "author": "Dendy01",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./script.js" defer></script>
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border: 0;
+            outline: 0;
+            list-style: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .form {
+            width: 30%;
+            margin: 50px auto;
+        }
+
+        .inputs {
+            margin-bottom: 12px;
+
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input {
+            padding: 12px 16px;
+            border-radius: 8px;
+
+            font-size: 18px;
+
+            background-color: rgb(125, 201, 201);
+        }
+
+        .input::placeholder {
+            font-size: 18px;
+
+            color: #ffffff;
+        }
+
+        .button {
+            padding: 12px 16px;
+            border-radius: 8px;
+
+            font-size: 18px;
+            
+            color: #ffffff;
+            background-color: #a59797;
+        }
+
+        .button:hover {
+            cursor: pointer;
+
+            color: #ffffff;
+            background-color: #afafaf;
+        }
+
+        .weather-list {
+            padding: 20px;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .weather-list__item {
+            padding: 8px;
+            border-radius: 8px;
+
+            text-align: center;
+
+            color: #ffffff;
+            background-color: rgb(181, 119, 223);
+        }
+
+        .text {
+            font-size: 18px;
+        }
+
+        .title {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="form">
+            <div class="inputs">
+                <input type="text" class="input input-city" placeholder="Укажите ваш город" required>
+                <input type="text" class="input input-api--key" placeholder="Укажите ваш ключ">
+                <input type="text" class="input input-lang" placeholder="Укажите ваш язык">
+            </div>
+            <button class="button">Получить погоду</button>
+        </div>
+    </div>
+</body>
+</html>
